@@ -23,7 +23,7 @@ export const InputSearchContainer = styled.div`
     font-size: 16px;
 
     &::placeholder {
-      color: #bcbcbc;
+      color: ${({ theme }) => theme.colors.gray[200]};
     }
   }
 `;
