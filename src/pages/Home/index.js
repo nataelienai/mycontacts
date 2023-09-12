@@ -1,14 +1,18 @@
 import {
-  Container, Header, ListContainer, Card,
+  Header, ListContainer, Card, InputSearchContainer,
 } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
-export default function ContactList() {
+export default function Home() {
   return (
-    <Container>
+    <div>
+      <InputSearchContainer>
+        <input type="text" placeholder="Pesquisar contato..." />
+      </InputSearchContainer>
+
       <Header>
         <strong>3 contatos</strong>
         <a href="/">Novo contato</a>
@@ -80,6 +84,6 @@ export default function ContactList() {
           </div>
         </Card>
       </ListContainer>
-    </Container>
+    </div>
   );
 }
