@@ -10,15 +10,17 @@ export default function ContactForm({ buttonLabel }) {
   return (
     <Form>
       <FormGroup>
-        <Input type="text" placeholder="Nome" />
+        <Input placeholder="Nome" />
+      </FormGroup>
+
+      <FormGroup
+        error="O formato do e-mail é inválido."
+      >
+        <Input placeholder="E-mail" error />
       </FormGroup>
 
       <FormGroup>
-        <Input type="text" placeholder="E-mail" />
-      </FormGroup>
-
-      <FormGroup>
-        <Input type="text" placeholder="Telefone" />
+        <Input placeholder="Telefone" />
       </FormGroup>
 
       <FormGroup>
