@@ -8,8 +8,9 @@ import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
 
-import isEmailValid from '../../utils/isEmailValid';
 import useErrors from '../../hooks/useErrors';
+import isEmailValid from '../../utils/isEmailValid';
+import formatPhone from '../../utils/formatPhone';
 
 export default function ContactForm({ buttonLabel }) {
   const [name, setName] = useState('');
@@ -37,6 +38,10 @@ export default function ContactForm({ buttonLabel }) {
     } else {
       unsetError('email');
     }
+  }
+
+  function handlePhoneChange(event) {
+    setPhone(formatPhone(event.target.value));
   }
 
   function handleSubmit(event) {
@@ -73,7 +78,8 @@ export default function ContactForm({ buttonLabel }) {
           type="tel"
           placeholder="Telefone"
           value={phone}
-          onChange={(event) => setPhone(event.target.value)}
+          onChange={handlePhoneChange}
+          maxLength="15"
         />
       </FormGroup>
 
