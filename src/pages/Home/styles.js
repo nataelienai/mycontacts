@@ -62,6 +62,11 @@ export const ListHeader = styled.header`
       margin-right: 8px;
       color: ${({ theme }) => theme.colors.primary.main};
     }
+
+    img {
+      transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(0deg)' : 'rotate(180deg)')};
+      transition: transform 0.2s ease-in;
+    }
   }
 `;
 
