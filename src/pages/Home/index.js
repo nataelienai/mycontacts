@@ -11,6 +11,8 @@ import trash from '../../assets/images/icons/trash.svg';
 
 import Loader from '../../components/Loader';
 
+import ContactService from '../../services/ContactService';
+
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
@@ -26,11 +28,8 @@ export default function Home() {
       setIsLoading(true);
 
       try {
-        const response = await fetch(
-          `http://localhost:3001/contacts?orderBy=${orderBy}`,
-        );
-        const json = await response.json();
-        setContacts(json);
+        const contactList = await ContactService.listContacts(orderBy);
+        setContacts(contactList);
       } catch (error) {
         console.log('erro', error);
       }

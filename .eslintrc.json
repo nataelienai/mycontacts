@@ -25,6 +25,7 @@
         "allowBind": false,
         "ignoreDOMComponents": true
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
   }
 }
