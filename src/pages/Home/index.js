@@ -19,7 +19,7 @@ export default function Home() {
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )));
+  )), [contacts, searchTerm]);
 
   useEffect(() => {
     async function loadContacts() {
