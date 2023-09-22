@@ -26,6 +26,7 @@
         "ignoreDOMComponents": true
       }
     ],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }]
   }
 }

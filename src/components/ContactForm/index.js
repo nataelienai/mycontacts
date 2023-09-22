@@ -35,8 +35,10 @@ export default function ContactForm({ buttonLabel }) {
     async function loadCategories() {
       setIsLoadingCategories(true);
 
-      const categoryList = await CategoryService.listCategories();
-      setCategories(categoryList);
+      try {
+        const categoryList = await CategoryService.listCategories();
+        setCategories(categoryList);
+      } catch {}
 
       setIsLoadingCategories(false);
     }
