@@ -72,7 +72,7 @@ export default function Home() {
     <div>
       <Loader isLoading={isLoading} />
 
-      {contacts.length > 0 && (
+      {!hasError && contacts.length > 0 && (
         <InputSearchContainer>
           <input
             type="text"
@@ -85,14 +85,9 @@ export default function Home() {
 
       <Header
         justifyContent={
-          // eslint-disable-next-line no-nested-ternary
-          hasError
-            ? 'flex-end'
-            : (
-              contacts.length > 0
-                ? 'space-between'
-                : 'center'
-            )
+          (!hasError && contacts.length > 0)
+            ? 'space-between'
+            : 'center'
         }
       >
         {(!hasError && contacts.length > 0) && (
