@@ -10,10 +10,15 @@ export default styled.select`
   outline: none;
   padding: 0 16px;
   font-size: 16px;
-  transition: border-color 0.2s ease-in;
+  transition: all 0.2s ease-in;
   appearance: none;
 
   &:focus {
-    border-color: ${({ theme }) => theme.colors.primary.main}
+    border-color: ${({ theme }) => theme.colors.primary.main};
+  }
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.gray[100]};
+    border-color: ${({ theme }) => theme.colors.gray[100]};
   }
 `;
