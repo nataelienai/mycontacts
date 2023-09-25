@@ -1,5 +1,7 @@
 /* eslint-disable no-shadow */
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, forwardRef, useImperativeHandle,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { ButtonContainer, Form } from './styles';
@@ -14,7 +16,9 @@ import isEmailValid from '../../utils/isEmailValid';
 import formatPhone from '../../utils/formatPhone';
 import CategoryService from '../../services/CategoryService';
 
-export default function ContactForm({ buttonLabel, onSubmit }) {
+import toast from '../../utils/toast';
+
+const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,6 +36,15 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
 
   const isFormValid = (name && errors.length === 0);
 
+  useImperativeHandle(ref, () => ({
+    setFieldValues: (contact) => {
+      setName(contact.name ?? '');
+      setEmail(contact.email ?? '');
+      setPhone(formatPhone(contact.phone ?? ''));
+      setCategoryId(contact.category_id ?? '');
+    },
+  }), []);
+
   useEffect(() => {
     async function loadCategories() {
       setIsLoadingCategories(true);
@@ -39,7 +52,12 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
       try {
         const categoryList = await CategoryService.listCategories();
         setCategories(categoryList);
-      } catch {}
+      } catch {
+        toast({
+          type: 'danger',
+          text: 'Ocorreu um erro ao obter as categorias!',
+        });
+      }
 
       setIsLoadingCategories(false);
     }
@@ -81,10 +99,6 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
     });
 
     setIsSubmitting(false);
-    setName('');
-    setEmail('');
-    setPhone('');
-    setCategoryId('');
   }
 
   return (
@@ -152,9 +166,11 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
 
     </Form>
   );
-}
+});
 
 ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default ContactForm;
