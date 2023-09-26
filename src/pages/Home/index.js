@@ -23,6 +23,7 @@ import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 import ContactService from '../../services/ContactService';
 
@@ -71,6 +72,18 @@ export default function Home() {
   return (
     <div>
       <Loader isLoading={isLoading} />
+
+      <Modal
+        danger
+        title="Tem certeza que deseja excluir o contato ”Natã Elienai”?"
+        confirmLabel="Excluir"
+        onCancel={() => alert('Cancelou')}
+        onConfirm={() => alert('Confirmou')}
+      >
+        <h1>H1</h1>
+        <h2>H2</h2>
+        <p>Corpo</p>
+      </Modal>
 
       {!hasError && contacts.length > 0 && (
         <InputSearchContainer>
