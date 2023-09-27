@@ -132,7 +132,7 @@ export default function Home() {
         <InputSearchContainer>
           <input
             type="text"
-            placeholder="Pesquisar contato..."
+            placeholder="Pesquise pelo nome..."
             value={searchTerm}
             onChange={handleChangeSearchTerm}
           />
