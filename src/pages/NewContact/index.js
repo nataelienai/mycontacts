@@ -21,7 +21,7 @@ export default function NewContact() {
     try {
       await ContactService.createContact(contact);
 
-      contactFormRef.current.resetFields();
+      contactFormRef.current?.resetFields();
 
       toast({
         type: 'success',

@@ -1,17 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import ContactForm from '../../components/ContactForm';
 import PageHeader from '../../components/PageHeader';
 import Loader from '../../components/Loader';
 
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
+
 import ContactService from '../../services/ContactService';
 
 import toast from '../../utils/toast';
 
 export default function EditContact() {
-  const [contactName, setContactName] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [contactName, setContactName] = useSafeAsyncState('');
+  const [isLoading, setIsLoading] = useSafeAsyncState(true);
   const contactFormRef = useRef(null);
 
   const { id } = useParams();
@@ -22,7 +24,7 @@ export default function EditContact() {
       try {
         const contact = await ContactService.getContactById(id);
 
-        contactFormRef.current.setFieldValues(contact);
+        contactFormRef.current?.setFieldValues(contact);
         setContactName(contact.name);
         setIsLoading(false);
       } catch {
@@ -35,7 +37,7 @@ export default function EditContact() {
     }
 
     loadContact();
-  }, [id, history]);
+  }, [id, history, setContactName, setIsLoading]);
 
   async function handleSubmit(formData) {
     const contact = {

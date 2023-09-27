@@ -12,8 +12,11 @@ import Select from '../Select';
 import Button from '../Button';
 
 import useErrors from '../../hooks/useErrors';
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
+
 import isEmailValid from '../../utils/isEmailValid';
 import formatPhone from '../../utils/formatPhone';
+
 import CategoryService from '../../services/CategoryService';
 
 import toast from '../../utils/toast';
@@ -23,9 +26,9 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [categories, setCategories] = useSafeAsyncState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useSafeAsyncState(true);
+  const [isSubmitting, setIsSubmitting] = useSafeAsyncState(false);
 
   const {
     errors,
@@ -50,7 +53,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       setPhone('');
       setCategoryId('');
     },
-  }), []);
+  }), [setName, setEmail, setPhone, setCategoryId]);
 
   useEffect(() => {
     async function loadCategories() {
@@ -70,7 +73,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
     }
 
     loadCategories();
-  }, []);
+  }, [setCategories, setIsLoadingCategories]);
 
   function handleNameChange(event) {
     setName(event.target.value);

@@ -25,19 +25,21 @@ import Loader from '../../components/Loader';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
+
 import ContactService from '../../services/ContactService';
 
 import toast from '../../utils/toast';
 
 export default function Home() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useSafeAsyncState([]);
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [contactBeingDeleted, setContactBeingDeleted] = useState(null);
-  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [isLoading, setIsLoading] = useSafeAsyncState(true);
+  const [hasError, setHasError] = useSafeAsyncState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useSafeAsyncState(false);
+  const [contactBeingDeleted, setContactBeingDeleted] = useSafeAsyncState(null);
+  const [isLoadingDelete, setIsLoadingDelete] = useSafeAsyncState(false);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -56,7 +58,7 @@ export default function Home() {
     }
 
     setIsLoading(false);
-  }, [orderBy]);
+  }, [orderBy, setContacts, setIsLoading, setHasError]);
 
   useEffect(() => {
     loadContacts();
