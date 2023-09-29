@@ -29,11 +29,15 @@ export default function Home() {
     handleConfirmDeleteContact,
   } = useHome();
 
+  const hasContacts = contacts.length > 0;
+  const isListEmpty = !isLoading && !hasError && !hasContacts;
+  const isSearchEmpty = hasContacts && filteredContacts.length === 0;
+
   return (
     <div>
       <Loader isLoading={isLoading} />
 
-      {!hasError && contacts.length > 0 && (
+      {hasContacts && (
         <InputSearch
           value={searchTerm}
           onChange={handleChangeSearchTerm}
@@ -46,27 +50,17 @@ export default function Home() {
         numberOfFilteredContacts={filteredContacts.length}
       />
 
-      {hasError && (
-        <ErrorStatus onTryAgain={handleTryAgain} />
-      )}
+      {hasError && <ErrorStatus onTryAgain={handleTryAgain} />}
+      {isListEmpty && <EmptyList />}
+      {isSearchEmpty && <SearchNotFound searchTerm={searchTerm} />}
 
-      {!hasError && (
-        <>
-          {(contacts.length === 0 && !isLoading) && (
-            <EmptyList />
-          )}
-
-          {(contacts.length > 0 && filteredContacts.length === 0 && !isLoading) && (
-            <SearchNotFound searchTerm={searchTerm} />
-          )}
-
-          <ContactList
-            filteredContacts={filteredContacts}
-            orderBy={orderBy}
-            onToggleOrderBy={handleToggleOrderBy}
-            onDeleteContact={handleDeleteContact}
-          />
-        </>
+      {hasContacts && (
+        <ContactList
+          filteredContacts={filteredContacts}
+          orderBy={orderBy}
+          onToggleOrderBy={handleToggleOrderBy}
+          onDeleteContact={handleDeleteContact}
+        />
       )}
 
       <Modal
