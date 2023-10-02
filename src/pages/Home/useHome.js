@@ -1,5 +1,5 @@
 import {
-  useCallback, useEffect, useMemo, useState,
+  useCallback, useDeferredValue, useEffect, useMemo, useState,
 } from 'react';
 
 import useSafeAsyncState from '../../hooks/useSafeAsyncState';
@@ -18,9 +18,11 @@ export default function useHome() {
   const [contactBeingDeleted, setContactBeingDeleted] = useSafeAsyncState(null);
   const [isLoadingDelete, setIsLoadingDelete] = useSafeAsyncState(false);
 
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )), [contacts, searchTerm]);
+    contact.name.toLowerCase().includes(deferredSearchTerm.toLowerCase())
+  )), [contacts, deferredSearchTerm]);
 
   const loadContacts = useCallback(async () => {
     setIsLoading(true);
@@ -42,9 +44,9 @@ export default function useHome() {
     loadContacts();
   }, [loadContacts]);
 
-  function handleToggleOrderBy() {
+  const handleToggleOrderBy = useCallback(() => {
     setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-  }
+  }, []);
 
   function handleChangeSearchTerm(event) {
     setSearchTerm(event.target.value);
@@ -54,10 +56,10 @@ export default function useHome() {
     loadContacts();
   }
 
-  function handleDeleteContact(contact) {
+  const handleDeleteContact = useCallback((contact) => {
     setIsDeleteModalVisible(true);
     setContactBeingDeleted(contact);
-  }
+  }, [setContactBeingDeleted, setIsDeleteModalVisible]);
 
   function handleCloseDeleteModal() {
     setIsDeleteModalVisible(false);
