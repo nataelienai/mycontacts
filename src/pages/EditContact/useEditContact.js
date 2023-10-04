@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import useSafeAsyncState from '../../hooks/useSafeAsyncState';
 
@@ -13,7 +13,7 @@ export default function useEditContact() {
   const contactFormRef = useRef(null);
 
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -37,7 +37,7 @@ export default function useEditContact() {
           type: 'danger',
           text: 'Contato não encontrado!',
         });
-        history.push('/');
+        navigate('/', { replace: true });
       }
     }
 
@@ -46,7 +46,7 @@ export default function useEditContact() {
     return () => {
       controller.abort();
     };
-  }, [id, history, setContactName, setIsLoading]);
+  }, [id, setContactName, setIsLoading, navigate]);
 
   async function handleSubmit(contact) {
     try {
