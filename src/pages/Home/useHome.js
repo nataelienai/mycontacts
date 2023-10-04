@@ -24,24 +24,34 @@ export default function useHome() {
     contact.name.toLowerCase().includes(deferredSearchTerm.toLowerCase())
   )), [contacts, deferredSearchTerm]);
 
-  const loadContacts = useCallback(async () => {
+  const loadContacts = useCallback(async (signal) => {
     setIsLoading(true);
 
     try {
-      const contactList = await ContactService.listContacts(orderBy);
+      const contactList = await ContactService.listContacts(orderBy, signal);
 
       setHasError(false);
       setContacts(contactList);
-    } catch {
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+
       setHasError(true);
       setContacts([]);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }, [orderBy, setContacts, setIsLoading, setHasError]);
 
   useEffect(() => {
-    loadContacts();
+    const controller = new AbortController();
+
+    loadContacts(controller.signal);
+
+    return () => {
+      controller.abort();
+    };
   }, [loadContacts]);
 
   const handleToggleOrderBy = useCallback(() => {

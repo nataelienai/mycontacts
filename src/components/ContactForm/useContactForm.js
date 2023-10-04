@@ -47,23 +47,36 @@ export default function useContactForm({ onSubmit, ref }) {
   }), [setName, setEmail, setPhone, setCategoryId]);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function loadCategories() {
       setIsLoadingCategories(true);
 
       try {
-        const categoryList = await CategoryService.listCategories();
+        const categoryList = await CategoryService.listCategories(
+          controller.signal,
+        );
+
         setCategories(categoryList);
-      } catch {
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+
         toast({
           type: 'danger',
           text: 'Ocorreu um erro ao obter as categorias!',
         });
+      } finally {
+        setIsLoadingCategories(false);
       }
-
-      setIsLoadingCategories(false);
     }
 
     loadCategories();
+
+    return () => {
+      controller.abort();
+    };
   }, [setCategories, setIsLoadingCategories]);
 
   function handleNameChange(event) {

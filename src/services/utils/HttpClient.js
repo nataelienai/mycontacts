@@ -10,6 +10,7 @@ class HttpClient {
     return this.makeRequest(path, {
       method: 'GET',
       headers: options?.headers,
+      signal: options?.signal,
     });
   }
 
@@ -53,6 +54,7 @@ class HttpClient {
 
     const response = await fetch(`${this.baseURL}${path}`, {
       method: options.method,
+      signal: options.signal,
       body: JSON.stringify(options.body),
       headers,
     });

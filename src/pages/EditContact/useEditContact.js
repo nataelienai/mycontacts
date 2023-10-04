@@ -16,14 +16,23 @@ export default function useEditContact() {
   const history = useHistory();
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function loadContact() {
       try {
-        const contact = await ContactService.getContactById(id);
+        const contact = await ContactService.getContactById(
+          id,
+          controller.signal,
+        );
 
         contactFormRef.current?.setFieldValues(contact);
         setContactName(contact.name);
         setIsLoading(false);
-      } catch {
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+
         toast({
           type: 'danger',
           text: 'Contato não encontrado!',
@@ -33,6 +42,10 @@ export default function useEditContact() {
     }
 
     loadContact();
+
+    return () => {
+      controller.abort();
+    };
   }, [id, history, setContactName, setIsLoading]);
 
   async function handleSubmit(contact) {
