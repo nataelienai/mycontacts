@@ -20,7 +20,7 @@ function ContactList({
   return (
     <>
       {filteredContacts.length > 0 && (
-        <ListHeader orderBy={orderBy}>
+        <ListHeader $orderBy={orderBy}>
           <button type="button" onClick={onToggleOrderBy}>
             <span>Nome</span>
             <img src={arrow} alt="Arrow" />
@@ -34,7 +34,7 @@ function ContactList({
             <div className="contact-name">
               <strong>{contact.name}</strong>
               {contact.category.name && (
-              <small>{contact.category.name}</small>
+                <small>{contact.category.name}</small>
               )}
             </div>
             <span>{contact.email}</span>

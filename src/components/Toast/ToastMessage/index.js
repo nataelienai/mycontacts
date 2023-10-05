@@ -18,11 +18,11 @@ function ToastMessage({
   return (
     <Container
       ref={animatedRef}
-      type={message.type}
       onClick={handleRemoveToast}
       tabIndex={0}
       role="button"
-      isLeaving={isLeaving}
+      $type={message.type}
+      $isLeaving={isLeaving}
     >
       {message.type === 'danger' && <img src={xCircle} alt="X circle" />}
       {message.type === 'success' && <img src={checkCircle} alt="Check circle" />}

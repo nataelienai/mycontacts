@@ -13,9 +13,7 @@ export default function Header({
     : 'center';
 
   return (
-    <Container
-      justifyContent={alignment}
-    >
+    <Container $justifyContent={alignment}>
       {(!hasError && numberOfcontacts > 0) && (
         <strong>
           {numberOfFilteredContacts}

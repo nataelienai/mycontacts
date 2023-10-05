@@ -16,7 +16,7 @@ export default function Button({
       type={type}
       disabled={disabled || isLoading}
       onClick={onClick}
-      danger={danger}
+      $danger={danger}
     >
       {!isLoading && children}
       {isLoading && <Spinner size={16} />}

@@ -2,14 +2,13 @@
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
+import useContactForm from './useContactForm';
 import { ButtonContainer, Form } from './styles';
 
 import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
-
-import useContactForm from './useContactForm';
 
 const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const {
@@ -33,7 +32,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
     <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
-          error={getErrorMessageByFieldName('name')}
+          $error={getErrorMessageByFieldName('name')}
           placeholder="Nome *"
           value={name}
           onChange={handleNameChange}
@@ -44,7 +43,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
           type="email"
-          error={getErrorMessageByFieldName('email')}
+          $error={getErrorMessageByFieldName('email')}
           placeholder="E-mail"
           value={email}
           onChange={handleEmailChange}

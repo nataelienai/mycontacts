@@ -1,6 +1,5 @@
 import useHome from './useHome';
 
-import Loader from '../../components/Loader';
 import InputSearch from './components/InputSearch';
 import Header from './components/Header';
 import ErrorStatus from './components/ErrorStatus';
@@ -8,6 +7,7 @@ import EmptyList from './components/EmptyList';
 import SearchNotFound from './components/SearchNotFound';
 import ContactList from './components/ContactList';
 
+import Loader from '../../components/Loader';
 import Modal from '../../components/Modal';
 
 export default function Home() {
