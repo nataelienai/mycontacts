@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# MyContacts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="./images/home.png" src="Página inicial da aplicação" width="800" />
+</p>
 
-## Available Scripts
+MyContacts é um Web App que permite aos usuários salvarem e categorizarem seus contatos.
 
-In the project directory, you can run:
+O objetivo do projeto foi utilizar o mínimo de bibliotecas possíveis durante o seu desenvolvimento, fazendo disso uma forma de aprender como as tecnologias funcionam "por baixo dos panos".
 
-### `yarn start`
+Este projeto foi desenvolvido durante o curso [JStack](https://jstack.com.br/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Projeto no Figma](https://www.figma.com/file/sgnH98HkOtbB09uA1SOVpW/MyContacts?type=design&node-id=0%3A1&mode=design&t=8Bj9pEEbR5pnDwXE-1)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tecnologias
 
-### `yarn test`
+- Linguagem: JavaScript
+- Gerenciador de pacotes: Yarn
+- Bibliotecas: React, React Router DOM e Styled Components
+- Ferramentas: ESLint, EditorConfig, Git e Figma
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dependências
 
-### `yarn build`
+Antes de tudo, é necessário estar com a [API](https://github.com/nataelienai/mycontacts-api) do projeto já em execução para que esta aplicação funcione.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para executar esta aplicação em seu computador, você precisará de [Git](https://git-scm.com/downloads) e [Node.js](https://nodejs.org/) instalados.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Como executar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Abra um terminal e clone o repositório:
+```sh
+git clone https://github.com/nataelienai/mycontacts.git
+```
 
-### `yarn eject`
+2. Entre na pasta do repositório clonado:
+```sh
+cd mycontacts
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Instale o Yarn (caso não o tenha):
+```sh
+npm install -g yarn
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Instale as dependências do projeto:
+```sh
+yarn
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Inicialize a aplicação:
+```sh
+yarn start
+```
