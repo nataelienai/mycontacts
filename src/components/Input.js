@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 export default styled.input`
   width: 100%;
   height: 52px;
-  background: #fff;
-  border: 2px solid #fff;
+  color: ${({ theme }) => theme.colors.primaryText};
+  background: ${({ theme }) => theme.colors.formInputBackground};
+  border: 2px solid ${({ theme }) => theme.colors.formInputBorder};
   box-shadow: 0px 4px 10px rgb(0, 0, 0, 0.04);
   border-radius: 4px;
   outline: none;
@@ -14,16 +15,20 @@ export default styled.input`
   appearance: none;
 
   &:focus {
-    border-color: ${({ theme }) => theme.colors.primary.main}
+    border-color: ${({ theme }) => theme.colors.formInputBorderFocus};
   }
 
   ${({ theme, $error }) => $error && css`
-    color: ${theme.colors.danger.main};
-    border-color: ${theme.colors.danger.main} !important;
+    color: ${theme.colors.dangerText};
+    border-color: ${theme.colors.dangerFormInputBorder} !important;
   `}
 
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray[100]};
-    border-color: ${({ theme }) => theme.colors.gray[200]};
+    background: ${({ theme }) => theme.colors.formInputBackgroundDisabled};
+    border-color: ${({ theme }) => theme.colors.formInputBorderDisabled};
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.placeholder};
   }
 `;

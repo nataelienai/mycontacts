@@ -7,12 +7,12 @@ export const Container = styled.div`
   align-items: center;
 
   p {
-    color: ${({ theme }) => theme.colors.gray[200]};
+    color: ${({ theme }) => theme.colors.secondaryText};
     text-align: center;
     margin-top: 8px;
 
     strong {
-      color: ${({ theme }) => theme.colors.primary.main};
+      color: ${({ theme }) => theme.colors.strongText};
     }
   }
 `;

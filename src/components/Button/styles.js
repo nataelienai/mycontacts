@@ -24,19 +24,19 @@ export const StyledButton = styled.button`
   }
 
   &:disabled {
-    background: #ccc !important;
+    background: ${({ theme }) => theme.colors.disabledButtonBackground} !important;
     cursor: default !important;
   }
 
   ${({ theme, $danger }) => $danger && css`
-    background: ${theme.colors.danger.main};
+    background: ${theme.colors.dangerButtonBackground};
 
     &:hover {
-      background: ${theme.colors.danger.light};
+      background: ${theme.colors.dangerButtonBackgroundHover};
     }
 
     &:active {
-      background: ${theme.colors.danger.dark};
+      background: ${theme.colors.dangerButtonBackgroundActive};
     }
   `}
 `;

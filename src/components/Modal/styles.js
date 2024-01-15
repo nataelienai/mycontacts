@@ -41,7 +41,7 @@ export const Overlay = styled.div`
 export const Container = styled.div`
   width: 100%;
   max-width: 450px;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.modalBackground};
   box-shadow: 0px 4px 10px rgb(0, 0, 0, 0.04);
   border-radius: 4px;
   padding: 24px;
@@ -50,7 +50,7 @@ export const Container = styled.div`
   > h1 {
     font-size: 22px;
     color: ${({ theme, $danger }) => (
-    $danger ? theme.colors.danger.main : theme.colors.gray[900]
+    $danger ? theme.colors.dangerText : theme.colors.primaryText
   )};
   }
 
@@ -74,7 +74,7 @@ export const Footer = styled.footer`
     border: none;
     font-size: 16px;
     margin-right: 24px;
-    color: ${({ theme }) => theme.colors.gray[200]};
+    color: ${({ theme }) => theme.colors.secondaryText};
 
     &:disabled {
       cursor: default;

@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: start;
 
   span {
-    color: ${({ theme }) => theme.colors.gray[200]};
+    color: ${({ theme }) => theme.colors.secondaryText};
     margin-left: 24px;
     word-break: break-word;
   }

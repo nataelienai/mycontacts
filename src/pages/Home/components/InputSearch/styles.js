@@ -5,7 +5,8 @@ export const Container = styled.div`
 
   input {
     width: 100%;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.formInputBackground};
+    color: ${({ theme }) => theme.colors.primaryText};
     border: none;
     border-radius: 25px;
     height: 50px;
@@ -15,7 +16,7 @@ export const Container = styled.div`
     font-size: 16px;
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.gray[200]};
+      color: ${({ theme }) => theme.colors.placeholder};
     }
   }
 `;

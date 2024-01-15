@@ -14,7 +14,7 @@ export const ListHeader = styled.header`
       font-size: 16px;
       font-weight: bold;
       margin-right: 8px;
-      color: ${({ theme }) => theme.colors.primary.main};
+      color: ${({ theme }) => theme.colors.strongText};
     }
 
     img {
@@ -25,7 +25,7 @@ export const ListHeader = styled.header`
 `;
 
 export const Card = styled.div`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: 0px 4px 10px rgb(0, 0, 0, 0.04);
   padding: 16px;
   border-radius: 4px;
@@ -43,8 +43,8 @@ export const Card = styled.div`
       align-items: center;
 
       small {
-        background: ${({ theme }) => theme.colors.primary.lighter};
-        color: ${({ theme }) => theme.colors.primary.main};
+        background: ${({ theme }) => theme.colors.labelBackground};
+        color: ${({ theme }) => theme.colors.labelText};
         font-weight: bold;
         text-transform: uppercase;
         padding: 4px;
@@ -56,7 +56,7 @@ export const Card = styled.div`
     span {
       display: block;
       font-size: 14px;
-      color: ${({ theme }) => theme.colors.gray[200]};
+      color: ${({ theme }) => theme.colors.secondaryText};
     }
   }
 

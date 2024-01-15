@@ -10,7 +10,7 @@ export const Container = styled.div`
 
     strong {
       font-size: 22px;
-      color: ${({ theme }) => theme.colors.danger.main};
+      color: ${({ theme }) => theme.colors.dangerText};
       display: block;
       margin-bottom: 8px;
     }
