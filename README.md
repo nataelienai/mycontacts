@@ -1,7 +1,7 @@
 # MyContacts
 
 <p align="center">
-  <img src="./images/home.png" src="Página inicial da aplicação" width="800" />
+  <img src="./images/home.png" alt="Página inicial da aplicação" width="800" />
 </p>
 
 MyContacts é um Web App que permite aos usuários salvarem e categorizarem seus contatos.
